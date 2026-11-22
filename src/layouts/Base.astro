@@ -1,0 +1,74 @@
+---
+import '@fontsource-variable/public-sans';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Olson Geospatial builds web maps, runs spatial analysis, and automates GIS workflows, with open-source tools or inside your existing Esri environment.',
+} = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/services/', label: 'Services' },
+  // { href: '/demo/', label: 'Demo' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+const pageTitle = title === 'Home' ? 'Olson Geospatial' : `${title} | Olson Geospatial`;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={new URL(currentPath, Astro.site)} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="/" class="logo">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <rect x="1" y="1" width="30" height="30" fill="none" stroke="#1c2a33" stroke-width="2"/>
+            <path d="M5 23 C 10 17, 14 21, 18 15 S 25 9, 27 8" fill="none" stroke="#1d5f8a" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="18" cy="15" r="3" fill="#a87b3d"/>
+          </svg>
+          Olson Geospatial
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            {navLinks.map((link) => (
+              <li>
+                <a href={link.href} aria-current={currentPath === link.href ? 'page' : undefined}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>&copy; {new Date().getFullYear()} Olson Geospatial, Buena Park, California</span>
+        <a href="mailto:info@olsongeospatial.com">info@olsongeospatial.com</a>
+      </div>
+    </footer>
+  </body>
+</html>
