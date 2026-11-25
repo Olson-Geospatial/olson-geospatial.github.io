@@ -214,3 +214,16 @@ p, li { max-width: var(--measure); }
 /* Footer */
 .site-footer { border-top: 1px solid var(--grid); padding: 2rem 0; font-size: 0.9rem; color: var(--muted); }
 .site-footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; }
+
+.site-header { border-top: 5px solid var(--water); }
+.sheet { background-color: #f2f7fa; }
+h2 { color: var(--water-dark); }
+.platforms { border-top-color: var(--water); }
+.platforms > div:first-child h3 { color: var(--forest); }
+.platforms > div:last-child h3 { color: var(--water); }
+.site-footer { background: var(--ink); color: #c9d3d9; border-top: none; }
+.site-footer a { color: #ffffff; }
+
+/* Keep the footer at the bottom of the window on short pages */
+body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+main { flex: 1; }
